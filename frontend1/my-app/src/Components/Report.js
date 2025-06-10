@@ -20,6 +20,8 @@ const Report = () => {
 
 
   const submitHandler = async(e)=>{
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
     e.preventDefault();
     setLoading(true)
     console.log(userr)
@@ -30,12 +32,10 @@ const Report = () => {
     const keyboard  = userr.keyboard;
     const Mouse = userr.Mouse;
     const ups = userr.ups;
-    const namee = "tushar";
 
 
     try {
-      console.log("hii")
-       const data = await axios.post(`http://localhost:5000/report`,{
+       const data = await axios.post(`${apiBaseUrl}/report`,{
            name,roomNo,systemNo,Moniter,keyboard,Mouse,ups,Issue,datee
           
        },{
@@ -54,13 +54,11 @@ const Report = () => {
        
     } catch (error) {
        console.log(error)
-       toast.error(error.response.data.message)// we the message that we have written in the backend
+       toast.error(error.response.data.message)
        setLoading(false)
        
     }
   }
-
-  // if(isAuthenticated) return <Navigate to={"/"}/>
 
   return (
     <Container  h={['80vh','100vh']} p={'16'}>

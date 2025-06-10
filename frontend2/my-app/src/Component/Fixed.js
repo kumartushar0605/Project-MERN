@@ -9,19 +9,15 @@ import axios from 'axios';
 import { Context } from '../index';
 
 const Fixed = () => {
-    const data = [
-        { "id": 1, "name": "Alice", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-        { "id": 2, "name": "Bob", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-        { "id": 3, "name": "Charlie", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-        { "id": 4, "name": "David", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working"},
-        { "id": 5, "name": "Eve", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" }
-      ]
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+   
       const navigate = useNavigate();
       const [user,setUserr] = useState([]);
       const{namee,setNamee,setData}= useContext(Context);
       console.log("nammee is "+namee)
       useEffect(()=>{
-        axios.get(`http://localhost:5000/getData/${namee}`,{
+        axios.get(`${apiBaseUrl}/getData/${namee}`,{
           withCredentials:true
         }).then((res)=>{
           setUserr(res.data)

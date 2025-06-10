@@ -3,6 +3,8 @@ import { ChakraProvider, Box, Flex, Button, VStack, useToast, Heading, Table, Th
 import axios from 'axios';
 
 const Assign = () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
   const [employees, setEmployees] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState('');
   const toast = useToast();
@@ -18,7 +20,7 @@ const Assign = () => {
     const { name, Mouse, keyboard, date, Moniter, roomNo, systemNo, ups, Issue } = employeeToAssign;
 
     try {
-      await axios.post('http://localhost:5000/AssignIssue', {
+      await axios.post(`${apiBaseUrl}/AssignIssue`, {
         name, Mouse, keyboard, date, Moniter, roomNo, systemNo, ups, Issue, assignedPerson: selectedPerson, id
       }, {
         headers: {
@@ -39,7 +41,7 @@ const Assign = () => {
 
       setTimeout(() => {
         setEmployees(employees.filter(item => item._id !== id));
-      }, 4000);
+      }, 3000);
     } catch (error) {
       console.error('Error storing filtered data:', error);
     }
@@ -47,7 +49,7 @@ const Assign = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/getIssue');
+      const response = await axios.get(`${apiBaseUrl}/getIssue`);
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employee data:', error);
@@ -92,9 +94,9 @@ const Assign = () => {
                   <Td>{employee.Issue}</Td>
                   <Td>{employee.date}</Td>
                   <Td>
-                    <Select placeholder="Select person" onChange={(e) => setSelectedPerson(e.target.value)} value={selectedPerson}>
+                    <Select placeholder="Select person" onChange={(e) => setSelectedPerson(e.target.value)} >
                       {availablePersons.map(person => (
-                        <option key={person} value={person}>{person}</option>
+                        <option key={person} >{person}</option>
                       ))}
                     </Select>
                     <Button onClick={() => assignPerson(employee._id)} marginTop="4">

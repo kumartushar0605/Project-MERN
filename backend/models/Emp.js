@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
+    empId:{
+      type:String  
+    },
     name:{
         type:String,
         // required:true,
     } ,
     email:{
-        type:String,
-        // required:true,
-    },
-    password:{
         type:String,
         // required:true,
     },
@@ -35,29 +34,9 @@ const schema = new mongoose.Schema({
     systemNo:{
         type:String
     },
-    Moniter:{
-        type:String
-    },
-    keyboard:{
-        type:String
-    },
-    Mouse:{
-        type:String
-    },
-    ups:{
-        type:String
-    }
-    ,
-    cpu:{
-        type:String
-    },
-    remarks:{
-        type:String
-    },
-    pcType:{
-        type:String
-    }
+    
+    
 })
 
 
-export const User = mongoose.model("EmployeeDetails",schema);
+export const EMP = mongoose.model("employe",schema);

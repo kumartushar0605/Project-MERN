@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 const Header = () => {
   const {userr} = useContext(Context);
+
   return (
     <> 
        <HStack bgColor={"blackAlpha.900"} p={'6'}  > 

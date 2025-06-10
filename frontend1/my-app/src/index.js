@@ -4,7 +4,7 @@ import App from './App';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import ColorModeSwitcher from './ColorModeSwitcher';
 import React, { createContext, useState } from 'react';
-
+import  theme  from '../src/Components/theme';
 
 export const Context = createContext();
 const isAuthenticated =false
@@ -24,7 +24,7 @@ const AppWrapper = ()=>{
         }}>
             {/* <StrictMode> */}
     <ColorModeScript/>
-<ChakraProvider>
+<ChakraProvider theme={theme}>
 <ColorModeSwitcher/>
 
     <App />

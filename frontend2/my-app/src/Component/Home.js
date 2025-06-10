@@ -98,7 +98,7 @@ const Home = () => {
                 transition={{ duration: 0.2 }}
                 onClick={()=>(navigate('/up'))}
               >
-                Issue Fixed
+                Update Inventory
               </MotionButton>
             </GridItem>
         </Box>

@@ -5,11 +5,15 @@ import { useLocation } from 'react-router-dom';
 
 
 const CheckStatus2 = () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
     const [employees, setEmployees] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState('');
   const toast = useToast();
  const location = useLocation();
+
  const { name,roomNo,systemNo } = location.state || {};
+
 
   useEffect(() => {
     fetchEmployees();
@@ -17,7 +21,7 @@ const CheckStatus2 = () => {
   const fetchEmployees = async () => {
     try {
         console.log("hiii")
-      const response = await axios.get(`http://localhost:5000/status?name=${name}&roomNo=${roomNo}&systemNo=${systemNo}`);
+      const response = await axios.get(`${apiBaseUrl}/status?name=${name}&roomNo=${roomNo}&systemNo=${systemNo}`);
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employee data:', error);

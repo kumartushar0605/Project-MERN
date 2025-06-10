@@ -8,6 +8,8 @@ import { Context } from '../index';
 const MotionBox = motion(Box);
 
 const Status = () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
   const [issues, setIssues] = useState([]);
   const { userr } = useContext(Context);
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,7 @@ const Status = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/getAssignedIssue?name=${userr.name}&roomNo=${userr.roomNo}&systemNo=${userr.systemNo}`,
+          `${apiBaseUrl}/getAssignedIssue?name=${userr.name}&roomNo=${userr.roomNo}&systemNo=${userr.systemNo}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -69,7 +71,7 @@ const Status = () => {
           ))
         ) : (
           <Text fontSize="lg" color="gray.500">
-            No Issues 
+            Not Assigned Yet!!
           </Text>
         )}
       </Box>

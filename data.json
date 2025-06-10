@@ -1,0 +1,24 @@
+[
+    {
+           "empId":"1",
+            "name":"Tushar Kumar",
+            "email":"t@gmail.com",
+            "dob":"12-09-2005",
+            "dor":"12-09-2005",
+            "doj":"12-09-2005",
+            "Address":"Bihar",
+            "roomNo":"223",
+            "systemNo":"2"
+    },
+        {   "empId":"2",
+        "name":"ankit Kumar",
+        "email":"ankit@gmail.com",
+        "dob":"12-09-2005",
+        "dor":"12-09-2005",
+        "doj":"12-09-2005",
+        "Address":"Ranchi",
+        "roomNo":"213",
+        "systemNo":"22"
+        }
+]
+    

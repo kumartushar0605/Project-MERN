@@ -1,10 +1,7 @@
 import { User } from "../models/user.js";
-import bcrypt from "bcrypt"
-import { sendCookie } from "../utils/features.js";
-
 
 export const register = async(req,res)=>{
-  const { name, email,dob,doj,dor, Address,roomNo,systemNo,Moniter,Mouse,keyboard,ups} = req.body;
+  const { name, email,dob,doj,dor, Address,roomNo,systemNo,Moniter,Mouse,keyboard,ups,Cpu,remarks,pcType} = req.body;
   console.log(name + " " + email)
 
     const user = await User.findOne({email});
@@ -14,11 +11,10 @@ export const register = async(req,res)=>{
       success:false,
       message:"User already exists"
     })
-  }
-    
+  } 
     try {
      
-      const newUser = new User({ name, email,dob, doj, dor, Address,roomNo,systemNo,Moniter,Mouse,keyboard,ups});
+      const newUser = new User({ name, email,dob, doj, dor, Address,roomNo,systemNo,Moniter,Mouse,keyboard,ups,cpu:Cpu,remarks,pcType});
       await newUser.save();
       // res.status(201).json(newUser); // Optional: respond with the created user object
       res.status(201).json({ success:"inventory alloted" });
@@ -32,6 +28,7 @@ export const register = async(req,res)=>{
 export const login = async(req,res)=>{
 
   const {name,roomNo,systemNo}=req.body;
+  console.log(name);
 
   try{
     const user = await User.findOne({name,roomNo,systemNo})
@@ -93,14 +90,7 @@ export const getMyProfile = async(req,res) =>{
   }
 }
 
-export const logout = async(req,res) =>{
-  res.status(200).cookie("token","",{expires:new Date (Date.now())}).json({
-    success:true,
-    message:"logout Succesfully",
-    // sameSite:process.env.NODE_ENV==="DEVELOPMENT"?"lax":"none", //backend kisi or url pr rhe ga or fronend kisi or url pr 
-    // secure:process.env.NODE_ENV==="DEVELOPMENT"?false:true
-  })
-}
+
 
 export const inventory2 = async(req,res) =>{
   const {name,roomNo,systemNo}= req.query;
@@ -124,12 +114,7 @@ export const inventory2 = async(req,res) =>{
     userr.ups=updatedData;
    }
 
-    // userr.Room = req.body.Room;
-    // userr.Sys = req.body.Sys;
-    // userr.Moniter = req.body.Moniter;
-    // userr.keyboard = req.body.keyboard;
-    // userr.Mouse = req.body.Mouse;
-    // userr.ups = req.body.ups;
+  
     
     await userr.save();
     

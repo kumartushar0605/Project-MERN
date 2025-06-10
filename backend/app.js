@@ -10,9 +10,9 @@ import cors from "cors"
  app.use(express.json());
  app.use(cookieParser())
  app.use(cors({
-    origin:["http://localhost:3000","http://localhost:3001"],
+    origin:["http://192.168.152.25:3000","http://192.168.152.25:3001","http://localhost:3000","http://localhost:3001"],
     methods:["GET","POST","PUT","DELETE"],
-    credentials:true,// agar ye nhi rhe ga to cookie sab front end par nhi pahuche ga
+    credentials:true,
 }))
  app.use(userRouter);
  app.use(userRouterr);
@@ -23,6 +23,6 @@ app.get("/",(req,res)=>{
 })
 
 
-app.listen(5000,()=>{
+app.listen(5000,'192.168.152.25',()=>{
     console.log(`server is working on port : 5000 `)
 })

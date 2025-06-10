@@ -16,6 +16,8 @@ import {
   } from '@chakra-ui/react';
 
 const Inventoryy = () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
     const [Moniter, setMonitorData] = useState('');
   const [keyboard, setKeyboardData] = useState('');
   const [Mouse, setMouseData] = useState('');
@@ -63,7 +65,7 @@ const Inventoryy = () => {
     
     try {
           console.log(selectedField+" hi"+updatedData)
-        const response = await axios.post(`http://localhost:5000/inventoryy?name=${name}&roomNo=${roomNo}&systemNo=${systemNo}`, dataa, {
+        const response = await axios.post(`${apiBaseUrl}/inventoryy?name=${name}&roomNo=${roomNo}&systemNo=${systemNo}`, dataa, {
           headers: {
             "Content-Type": "application/json"
           },

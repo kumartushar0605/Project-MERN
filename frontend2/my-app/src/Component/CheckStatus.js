@@ -22,11 +22,14 @@ const CheckStatus = () => {
   const [systemNo, setSystemNo] = useState('');
   const toast = useToast();
   const navigate = useNavigate();
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
 
   const handleSubmit = async (e) => {
+    console.log('hiiii')
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post(`${apiBaseUrl}/login`, {
         name,
         roomNo,
         systemNo,
@@ -34,7 +37,7 @@ const CheckStatus = () => {
       if (response.data.success) {
         toast({
           title: 'Success',
-          description: 'Employee details matched.',
+          description: 'Employee details matched',
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -43,7 +46,7 @@ const CheckStatus = () => {
       } else {
         toast({
           title: 'Error',
-          description: 'Employee details do not match.',
+          description: 'Employee details not matched',
           status: 'error',
           duration: 5000,
           isClosable: true,

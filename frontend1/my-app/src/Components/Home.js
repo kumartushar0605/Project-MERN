@@ -89,7 +89,7 @@ button:{
   return (
     <Box id="home" width="100%" height="90vh" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
     <Flex mt={-38} width="100%" justifyContent="space-around" alignItems="center">
-      <Box  borderTop="5px solid #6B46C1" pt="1rem">
+      <Box mt={-10}  borderTop="5px solid #6B46C1" pt="1rem">
         <motion.div  {...animation.h1}>
           <Heading mb={3} as="h1" fontWeight="900" fontSize="4rem">
             Hi, Welcome<br />{userr.name}

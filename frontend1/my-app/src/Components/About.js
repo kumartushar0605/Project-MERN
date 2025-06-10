@@ -71,36 +71,7 @@ const About = () => {
           </VStack>
         </MotionBox>
 
-        <MotionBox
-          p={4}
-          borderWidth="1px"
-          borderRadius="lg"
-          w="full"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ scale: 1.02 }}
-          bg={isDark ? 'gray.700' : 'gray.50'}
-          boxShadow="xl"
-        >
-          <Heading as="h2" size="lg" mb={4} color={isDark ? 'gray.100' : 'gray.800'}>
-            Contact Us
-          </Heading>
-          <HStack spacing={4} align="center">
-            <Icon as={FaUserTie} w={10} h={10} color={isDark ? 'gray.300' : 'gray.700'} />
-            <VStack align="start">
-              <Text fontSize="md" color={isDark ? 'gray.300' : 'gray.700'}>
-                <strong>Manager:</strong> John Doe
-              </Text>
-              <Text fontSize="md" color={isDark ? 'gray.300' : 'gray.700'}>
-                <strong>Email:</strong> john.doe@example.com
-              </Text>
-              <Text fontSize="md" color={isDark ? 'gray.300' : 'gray.700'}>
-                <strong>Phone:</strong> +1 (555) 123-4567
-              </Text>
-            </VStack>
-          </HStack>
-        </MotionBox>
+
       </VStack>
     </Container>
   );

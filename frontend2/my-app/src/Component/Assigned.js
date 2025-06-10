@@ -3,6 +3,8 @@ import { ChakraProvider, Box, Flex, Button, VStack, useToast,Input, Heading, Tab
 import axios from 'axios';
 
 const Assigned = () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
   const [employees, setEmployees] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState('');
   const [datee,setDate] = useState('');
@@ -19,7 +21,7 @@ const Assigned = () => {
     const { name, Mouse, keyboard, date, Moniter, roomNo, systemNo, ups, Issue ,AssignedTo} = employeeToAssign;
 
     try {
-      await axios.post('http://localhost:5000/IssueFixed', {
+      await axios.post(`${apiBaseUrl}/IssueFixed`, {
         name, Mouse, keyboard, date, Moniter, roomNo, systemNo, ups, Issue, assignedPerson: AssignedTo, id,datee
       }, {
         headers: {
@@ -38,7 +40,7 @@ const Assigned = () => {
 
       setTimeout(() => {
         setEmployees(employees.filter(item => item._id !== id));
-      }, 4000);
+      }, 3000);
     } catch (error) {
       console.error('Error storing filtered data:', error);
     }
@@ -47,7 +49,7 @@ const Assigned = () => {
   const fetchEmployees = async () => {
     try {
         console.log("hiii")
-      const response = await axios.get('http://localhost:5000/IssueAssigned');
+      const response = await axios.get(`${apiBaseUrl}/IssueAssigned`);
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employee data:', error);
@@ -96,9 +98,9 @@ const Assigned = () => {
                   <Td>
                     <FormControl>
                   
-                  <Input type='date' w={160} onChange={(e)=>setDate(e.target.value)}  />
+                  <Input type='date' w={140} onChange={(e)=>setDate(e.target.value)}  />
                   </FormControl>
-                <Button onClick={()=>handlerSubmit(employee._id)} bgColor={'lightblue'} w={160} mt={6}>Fixed</Button>
+                <Button onClick={()=>handlerSubmit(employee._id)} bgColor={'lightblue'} w={140} mt={6}>Fixed</Button>
                   </Td>
                 </Tr>
               ))}

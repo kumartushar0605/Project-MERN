@@ -8,13 +8,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../index';
 const Emp = () => {
-  const dataa = [
-    { "id": 1, "name": "Alice", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-    { "id": 2, "name": "Bob", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-    { "id": 3, "name": "Charlie", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" },
-    { "id": 4, "name": "David", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working"},
-    { "id": 5, "name": "Eve", "Room": "2","sys":"3","Mouse":"Logitech","Keybord":"Zebronics","Moniter":"LG","ups":"APC","AssignedTo":"anish","Issue":" the keboard is not working" }
-  ]
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+ 
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
   const {namee,data,setData} = useContext(Context);
@@ -33,7 +29,7 @@ const Emp = () => {
       setFilteredData(result);
 
       try {
-        await axios.post('http://localhost:5000/storeFilteredData', {
+        await axios.post(`${apiBaseUrl}/storeFilteredData`, {
           date: date,
           filteredItems: result,
           namee

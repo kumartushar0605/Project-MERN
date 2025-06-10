@@ -2,6 +2,7 @@ import { User } from "../models/report.js";
 import { dataa } from "../models/Data.js";
 import { UserAssign } from "../models/assign.js";
 import { empStatus } from "../models/empStatus.js";
+import { EMP } from "../models/Emp.js";
 
 export const report = async(req,res)=>{
     const { name, roomNo , systemNo, Moniter , keyboard , Mouse , ups , Issue,datee,} = req.body;
@@ -54,16 +55,6 @@ export const Data = async(req,res) =>{
     }
 }
 
-export const getData = async(req,res) =>{
-      const {namee} = req.params;
-    //   console.log(AssignTo.namee)
-    try {
-      const getData = await dataa.find({namee})
-      res.json(getData)
-    } catch (error) {
-      res.status(500).json({ message: 'Error storing filtered data' });
-    }
-}
 
 export const getIssue = async(req,res)=>{
   
@@ -76,14 +67,14 @@ export const getIssue = async(req,res)=>{
   
 }
 export const AssignIssue = async(req,res) =>{
-  const { date,name,Issue,Moniter,Mouse,keyboard,ups,assignedPerson,systemNo,roomNo,idd} = req.body;
+  const { date,name,Issue,Moniter,Mouse,keyboard,ups,assignedPerson,systemNo,roomNo,id} = req.body;
   console.log(date)
   try {
     const newFilteredData = new UserAssign({ name, roomNo , systemNo, Moniter , keyboard , Mouse , ups , Issue,date,AssignedTo:assignedPerson});
     await newFilteredData.save();
 
     
-    await User.deleteMany({ _id: { $in: idd } });
+    await User.deleteMany({ _id: { $in: id } });
     res.status(201).json({ message: 'Filtered data stored successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error storing filtered data' });
@@ -140,4 +131,17 @@ try {
 } catch (error) {
   res.status(500).json({ message: 'Error storing filtered data' });
 }
+}
+
+export const empID = async(req,res)=>{
+    const {empID} = req.params;
+    console.log(empID);
+
+    try{
+       const ress = await EMP.findOne({empId:empID});
+       console.log(ress);
+       res.json(ress); 
+    }catch(error){
+      console.log(error)
+    }
 }

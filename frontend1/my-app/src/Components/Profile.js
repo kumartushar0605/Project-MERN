@@ -1,16 +1,18 @@
-import { Box, Heading, Text, Flex, Icon, Grid, GridItem } from '@chakra-ui/react';
-import { FaCalendarDay, FaHome, FaKeyboard, FaDesktop, FaMouse, FaUserAlt ,FaBatteryHalf,FaDoorClosed , FaLaptop} from 'react-icons/fa';
+import { Box, Heading, Text, Flex, Icon, Grid, GridItem, Center } from '@chakra-ui/react';
+import { FaCalendarDay, FaHome, FaKeyboard, FaDesktop, FaMouse, FaUserAlt, FaBatteryHalf, FaDoorClosed, FaLaptop, FaMicrochip,FaInfoCircle } from 'react-icons/fa';
 import React, { useContext } from 'react';
 import { Context } from '../index';
+import "../Styles/profile.scss"
 
 const Profile = () => {
-  const {userr} = useContext(Context);
+  const { userr } = useContext(Context);
 
   return (
     <Box
       width="800px"
       margin="0 auto"
       padding="30px"
+      
       mt={30}
       borderRadius="15px"
       boxShadow="0 10px 30px rgba(0, 0, 0, 0.1)"
@@ -60,7 +62,7 @@ const Profile = () => {
         </GridItem>
         <GridItem>
           <Flex alignItems="center">
-            <Icon as={FaUserAlt} w={6} h={6} marginRight="10px" />
+            <Icon as={FaDoorClosed} w={6} h={6} marginRight="10px" />
             <Text fontSize="xl" color="gray.600">
               Room No.: {userr.roomNo}
             </Text>
@@ -74,38 +76,166 @@ const Profile = () => {
             </Text>
           </Flex>
         </GridItem>
-        <GridItem>
+        {userr.pcType === 'fullPC' && (
+          <>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaDesktop} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Monitor: {userr.Moniter}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaKeyboard} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Keyboard: {userr.keyboard}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaMouse} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Mouse: {userr.Mouse}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaBatteryHalf} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  UPS: {userr.ups}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaMicrochip} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  CPU: {userr.cpu}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem >
           <Flex alignItems="center">
-            <Icon as={FaDesktop} w={6} h={6} marginRight="10px" />
-            <Text fontSize="xl" color="gray.600">
-              Monitor: {userr.Moniter}
-            </Text>
+            <Icon as={FaInfoCircle} mr={3} mt={-10} w={6} h={6} />
+            <Flex  flexDirection="row" alignItems="center" mt={-2} fontSize="xl" color="gray.600" whiteSpace="pre-wrap">
+              <strong style={{marginTop:'-37px'}}>remark:</strong>
+              <Box
+                overflowY="auto"
+                maxHeight="70px"
+                textAlign="left"
+                ml={2}
+                p={2}
+                mt={3}
+                border="1px solid"
+                borderColor="gray.300"
+                borderRadius="md"
+                backgroundColor="gray.50"
+                w={250}
+
+                className="custom-scrollbar"
+              >
+                {userr.remarks}
+              </Box>
+            </Flex>
           </Flex>
         </GridItem>
-        <GridItem>
+          </>
+        )}
+        {userr.pcType === 'desktopPC' && (
+          <>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaDesktop} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Monitor: {userr.Moniter}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaKeyboard} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Keyboard: {userr.keyboard}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaMouse} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  Mouse: {userr.Mouse}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem>
+              <Flex alignItems="center">
+                <Icon as={FaBatteryHalf} w={6} h={6} marginRight="10px" />
+                <Text fontSize="xl" color="gray.600">
+                  UPS: {userr.ups}
+                </Text>
+              </Flex>
+            </GridItem>
+            <GridItem colSpan={2}>
           <Flex alignItems="center">
-            <Icon as={FaKeyboard} w={6} h={6} marginRight="10px" />
-            <Text fontSize="xl" color="gray.600">
-              Keyboard: {userr.keyboard}
-            </Text>
+            <Icon as={FaInfoCircle} mr={3} mt={-10} w={6} h={6} />
+            <Flex  flexDirection="row" alignItems="center" mt={-2} fontSize="xl" color="gray.600" whiteSpace="pre-wrap">
+              <strong style={{marginTop:'-37px'}}>remark:</strong>
+              <Box
+                overflowY="auto"
+                maxHeight="70px"
+                textAlign="left"
+                ml={2}
+                p={2}
+                mt={3}
+                border="1px solid"
+                borderColor="gray.300"
+                borderRadius="md"
+                backgroundColor="gray.50"
+                w={250}
+                className="custom-scrollbar"
+              >
+                {userr.remarks}
+              </Box>
+            </Flex>
           </Flex>
         </GridItem>
-        <GridItem>
+          </>
+        )}
+        {userr.pcType === 'other' && (
+       
+        
+        <GridItem colSpan={2}>
           <Flex alignItems="center">
-            <Icon as={FaMouse} w={6} h={6} marginRight="10px" />
-            <Text fontSize="xl" color="gray.600">
-              Mouse: {userr.Mouse}
-            </Text>
+            <Icon as={FaInfoCircle} mr={3} mt={-10} w={6} h={6} />
+            <Flex  flexDirection="row" alignItems="center" mt={-2} fontSize="xl" color="gray.600" whiteSpace="pre-wrap">
+              <strong style={{marginTop:'-37px'}}>remark:</strong>
+              <Box
+                overflowY="auto"
+                maxHeight="70px"
+                textAlign="left"
+                ml={2}
+                p={2}
+                mt={3}
+                border="1px solid"
+                borderColor="gray.300"
+                borderRadius="md"
+                backgroundColor="gray.50"
+                className="custom-scrollbar"
+                w={250}
+              >
+                {userr.remarks}
+              </Box>
+            </Flex>
           </Flex>
         </GridItem>
-        <GridItem>
-          <Flex alignItems="center">
-            <Icon as={FaBatteryHalf} w={6} h={6} marginRight="10px" />
-            <Text fontSize="xl" color="gray.600">
-              UPS: {userr.ups}
-            </Text>
-          </Flex>
-        </GridItem>
+        
+      
+       
+        )}
       </Grid>
     </Box>
   );
